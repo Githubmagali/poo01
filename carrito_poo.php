@@ -38,7 +38,7 @@ private $precio;
 private $descripcion;
 private $iva;
 
-public function __construct() {
+public function __construct() { //metodo construct puede ser publico, privado o protegido
 $this->precio =0.0;
 $this->iva= 0.0;
 }
@@ -67,11 +67,10 @@ class Carrito {
     private$subTotal;
     private$total;
 
-    public function __construct(){
-        $this->aProductos = array();
+    public function __construct()
+        {$this->aProductos = array();
         $this->subTotal = 0.0;
-        $this ->total= 0.0;
-    }
+        $this ->total= 0.0;}
 
 
 public function __get($propiedad)
@@ -86,7 +85,7 @@ public function cargarProducto ($producto)
 
 
 public function imprimirTicket(){
-    echo "<table class='table' style='width:400px'>";
+    echo "<table class='table ' style='width:1000px'>";
     echo "<tr><th colspan='2' class='text-center'>Market</th></tr>
     <tr> <th>FECHA</th>
     <td>" . date("d/m/Y H:i:s") . "</td></tr>
@@ -94,18 +93,11 @@ public function imprimirTicket(){
     <th>DNI</th>
     <td>" . $this->cliente->dni . "</td>
   </tr>
-  <tr>
-    <th>Nombre</th>
-    <td>" . $this->cliente->nombre . "</td>
-  </tr>
-  <tr>
-    <th> Productos:</th>
-  </tr>";
+  <tr>      <th>Nombre</th>  <td>" . $this->cliente->nombre . "</td>   </tr>
+  <tr> <th> Productos:</th>   </tr>";
   foreach ($this->aProductos as $producto) {
-    echo "<tr>
-                <th>" . $producto->nombre . "</th>
-                <td>$ " . number_format($producto->precio, 2, ",", ".") . "</td>
-            </tr>";
+    echo "<tr><th>" . $producto->nombre . "</th>
+ <td>$ " . number_format($producto->precio, 2, ",", ".") . "</td> </tr>";
     $this->subTotal += $producto->precio;
     $this->total += $producto->precio * (($producto->iva / 100)+1);
   }
@@ -125,7 +117,7 @@ echo "<tr>
 //Programa
 $cliente1 = new Cliente();
 $cliente1->dni = "376";
-$cliente1->nombre = "Mactoria";
+$cliente1->nombre = "Moria";
 $cliente1->correo = "abc@gmail.com";
 $cliente1->telefono = "+5411";
 $cliente1->descuento = 0.09;
